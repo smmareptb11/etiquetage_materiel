@@ -146,6 +146,8 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend"
 ]
 
+CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "*").split(",")
+
 LOGIN_URL = "/admin/login/"
 
 STATIC_ROOT = BASE_DIR / "static"
