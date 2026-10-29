@@ -221,6 +221,6 @@ __marimo__/
 
 # Ajoute des règles d'exclusion complémentaires au fichier .gitignore du
 # projet Python
-etiquetage_materiel/settings_ldap.py
-static/
-sync/
+/etiquetage_materiel/settings_ldap.py
+/static/
+/sync/
