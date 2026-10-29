@@ -14,6 +14,6 @@ CREATE OR REPLACE VIEW "public"."V_UTI" AS
 			nullif(upper(trim(UTI.last_name)), '')
 		)::CHARACTER VARYING(301)
 			AS "UTI_NOM",
-		upper(split_part(UTI.email, '@', 1))::CHARACTER VARYING(254)
+		upper(split_part(UTI.username, '@', 1))::CHARACTER VARYING(150)
 			AS "UTI_UID"
 	FROM "public"."T_E_UTILISATEUR_UTI" AS UTI;

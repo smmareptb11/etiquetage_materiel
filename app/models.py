@@ -272,4 +272,4 @@ class VUti(models.Model):
 		blank=True
 	)
 
-	UTI_UID = models.CharField(max_length=254)
+	UTI_UID = models.CharField(max_length=150)

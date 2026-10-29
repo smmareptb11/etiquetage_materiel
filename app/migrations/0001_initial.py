@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TUti',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
                 ('is_superuser', models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status')),
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TMtp',
             fields=[
-                ('MTP_ID', models.BigAutoField(primary_key=True, serialize=False)),
+                ('MTP_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('MTP_LIBELLE', models.CharField(max_length=255, verbose_name='Libellé')),
                 ('MTP_RANG', models.PositiveBigIntegerField(default=0, verbose_name="Ordre d'affichage")),
                 ('MTP_TYPE_DATA', models.CharField(choices=[('string', 'Texte'), ('integer', 'Nombre entier'), ('decimal', 'Nombre décimal'), ('boolean', 'Booléen'), ('date', 'Date'), ('datetime', 'Date et heure')], max_length=63, verbose_name='Type de données de la valeur')),
@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('UTI_ID', models.OneToOneField(db_column='UTI_ID', on_delete=django.db.models.deletion.DO_NOTHING, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('UTI_NOM', models.CharField(blank=True, max_length=301)),
-                ('UTI_UID', models.CharField(max_length=254)),
+                ('UTI_UID', models.CharField(max_length=150)),
             ],
             options={
                 'db_table': 'V_UTI',
@@ -72,7 +72,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TAcc',
             fields=[
-                ('ACC_ID', models.BigAutoField(primary_key=True, serialize=False)),
+                ('ACC_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('ACC_DROIT', models.CharField(choices=[('R', 'Lecture'), ('W', 'Écriture')], max_length=1, verbose_name='Droit')),
                 ('UTI_ID', models.ForeignKey(db_column='UTI_ID', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Utilisateur')),
             ],
@@ -84,7 +84,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TMat',
             fields=[
-                ('MAT_ID', models.BigAutoField(primary_key=True, serialize=False)),
+                ('MAT_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('MAT_NUMERO', models.CharField(blank=True, help_text='Numéro interne attribué par le gestionnaire du type de matériel.', max_length=63, verbose_name='Numéro du matériel')),
                 ('UTI_ID', models.ForeignKey(blank=True, db_column='UTI_ID', null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Bénéficiaire')),
             ],
@@ -98,7 +98,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TDec',
             fields=[
-                ('DEC_ID', models.BigAutoField(primary_key=True, serialize=False)),
+                ('DEC_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('DEC_VALEUR', models.CharField(max_length=255, verbose_name='Valeur')),
                 ('MAT_ID', models.ForeignKey(db_column='MAT_ID', on_delete=django.db.models.deletion.CASCADE, to='app.tmat')),
                 ('MTP_ID', models.ForeignKey(db_column='MTP_ID', on_delete=django.db.models.deletion.CASCADE, to='app.tmtp', verbose_name='Propriété')),
@@ -116,7 +116,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='TMtt',
             fields=[
-                ('MTT_ID', models.BigAutoField(primary_key=True, serialize=False)),
+                ('MTT_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('MTT_LIBELLE', models.CharField(max_length=255, verbose_name='Libellé')),
                 ('MTT_RANG', models.PositiveBigIntegerField(default=0, verbose_name="Ordre d'affichage")),
                 ('UTI', models.ManyToManyField(through='app.TAcc', to=settings.AUTH_USER_MODEL)),
